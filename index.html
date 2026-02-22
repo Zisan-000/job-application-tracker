@@ -9,9 +9,498 @@
       rel="stylesheet"
       type="text/css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+      * {
+        font-family: "Geist", sans-serif;
+        background-color: #f8fafc;
+      }
+      .active {
+        @apply !bg-blue-600 text-white;
+      }
+    </style>
   </head>
-  <body>
-    <h1 class="text-center m-3 p-3">Job Application Tracker</h1>
+  <body class="max-w-[1110px] mx-auto">
+    <header>
+      <section class="pb-12">
+        <h1 class="text-left pt-14 pb-5 font-bold text-2xl">
+          Job Application Tracker
+        </h1>
+        <div class="flex gap-4">
+          <div
+            class="box-1 shadow-sm rounded-md w-[360px] h-[97px] p-4 !bg-white font-medium text-sm"
+          >
+            Total <br />
+            <span id="total" class="font-bold text-xl !bg-white">8</span>
+          </div>
+          <div
+            class="box-2 shadow-sm rounded-md w-[360px] h-[97px] p-4 !bg-white font-medium text-sm"
+          >
+            Interview <br />
+            <span class="font-bold text-xl text-green-600 !bg-white">0</span>
+          </div>
+          <div
+            class="box-3 shadow-sm rounded-md w-[360px] h-[97px] p-4 !bg-white font-medium text-sm"
+          >
+            Rejected <br />
+            <span class="font-bold text-xl text-red-600 !bg-white">0</span>
+          </div>
+        </div>
+      </section>
+    </header>
+    <hr class="border-gray-300" />
+
+    <main>
+      <section class="flex justify-between py-7">
+        <div class="font-bold">Available Jobs</div>
+        <div class="font-medium text-sm text-gray-500">
+          <span id="remove">8</span> jobs
+        </div>
+      </section>
+      <section>
+        <button class="btn active px-8">All</button>
+        <button class="btn active px-8">Interview</button>
+        <button class="btn active px-8">Rejected</button>
+      </section>
+
+      <section class="mt-6">
+        <div
+          id="noJobs"
+          class="text-center !bg-white rounded-lg shadow-sm h-[400px] my-3 flex flex-col items-center justify-center hidden"
+        >
+          <img
+            class="!bg-white block mb-4"
+            src="./jobs.png"
+            alt="Jobs illustration"
+          />
+          <p class="font-bold text-2xl !bg-white">No jobs available</p>
+          <p class="text-gray-400 !bg-white">
+            Check back soon for new job opportunities
+          </p>
+        </div>
+
+        <div id="job1" class="!bg-white p-4 rounded-lg shadow-sm mb-4">
+          <div class="flex !bg-white justify-between">
+            <h1 class="!bg-white my-1">
+              <span class="font-bold !bg-white">Mobile First Corp</span>
+              <br /><span class="!bg-white text-gray-500 text-sm"
+                >React Native Developer</span
+              >
+            </h1>
+            <button
+              class="btn w-10 h-10 flex items-center justify-center rounded-full !bg-white border border-gray-200 text-gray-400"
+            >
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+          <p class="!bg-white my-4 text-gray-500 text-xs">
+            Remote • Full-time • $130,000-$175,000
+          </p>
+
+          <button id="not-applied-job1" class="btn my-2">Not Applied</button>
+          <button
+            id="status-interview-job1"
+            class="btn btn-outline btn-success !bg-green-100 my-2 rounded-md hidden"
+          >
+            Interview
+          </button>
+          <button
+            id="status-rejected-job1"
+            class="btn btn-outline btn-error rounded-md my-2 !bg-red-100 hidden"
+          >
+            Rejected
+          </button>
+
+          <p class="!bg-white text-sm">
+            Build cross-platform mobile applications using React Native. Work on
+            products used by millions of users worldwide.
+          </p>
+
+          <div class="flex gap-2 my-5 !bg-white">
+            <button
+              onclick="updateJobStatus('job1', 'interview')"
+              class="btn btn-outline btn-success rounded-md !bg-white"
+            >
+              Interview
+            </button>
+            <button
+              onclick="updateJobStatus('job1', 'rejected')"
+              class="btn btn-outline btn-error rounded-md !bg-white"
+            >
+              Rejected
+            </button>
+          </div>
+        </div>
+        <div id="job2" class="!bg-white p-4 rounded-lg shadow-sm mb-4">
+          <div class="flex !bg-white justify-between">
+            <h1 class="!bg-white my-1">
+              <span class="font-bold !bg-white">WebFlow Agency</span>
+              <br /><span class="!bg-white text-gray-500 text-sm"
+                >Web Designer & Developer</span
+              >
+            </h1>
+            <button
+              id="remove"
+              class="btn w-10 h-10 flex items-center justify-center rounded-full !bg-white border border-gray-200 text-gray-400"
+            >
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+          <p class="!bg-white my-4 text-gray-500 text-xs">
+            Los Angeles, CA • Part-time • $80,000 - $120,000
+          </p>
+          <button id="not-applied-job2" class="btn my-2">Not Applied</button>
+          <button
+            id="status-interview-job2"
+            class="btn btn-outline btn-success !bg-green-100 my-2 rounded-md hidden"
+          >
+            Interview
+          </button>
+          <button
+            id="status-rejected-job2"
+            class="btn btn-outline btn-error rounded-md my-2 !bg-red-100 hidden"
+          >
+            Rejected
+          </button>
+          <p class="!bg-white text-sm">
+            Create stunning web experiences for high-profile clients. Must have
+            portfolio and experience with modern web design trends.
+          </p>
+          <div class="flex gap-2 my-5 !bg-white">
+            <button
+              onclick="updateJobStatus('job2', 'interview')"
+              class="btn btn-outline btn-success rounded-md !bg-white"
+            >
+              Interview
+            </button>
+            <button
+              onclick="updateJobStatus('job2', 'rejected')"
+              class="btn btn-outline btn-error rounded-md !bg-white"
+            >
+              Rejected
+            </button>
+          </div>
+        </div>
+        <div id="job3" class="!bg-white p-4 rounded-lg shadow-sm mb-4">
+          <div class="flex !bg-white justify-between">
+            <h1 class="!bg-white my-1">
+              <span class="font-bold !bg-white">DataViz Solutions</span>
+              <br /><span class="!bg-white text-gray-500 text-sm"
+                >Data Visualization Specialist</span
+              >
+            </h1>
+            <button
+              id="remove"
+              class="btn w-10 h-10 flex items-center justify-center rounded-full !bg-white border border-gray-200 text-gray-400"
+            >
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+          <p class="!bg-white my-4 text-gray-500 text-xs">
+            Boston, MA • Full-time • $125,000 - $165,000
+          </p>
+          <button id="not-applied-job3" class="btn my-2">Not Applied</button>
+          <button
+            id="status-interview-job3"
+            class="btn btn-outline btn-success my-2 !bg-green-100 rounded-md hidden"
+          >
+            Interview
+          </button>
+          <button
+            id="status-rejected-job3"
+            class="btn btn-outline btn-error my-2 rounded-md !bg-red-100 hidden"
+          >
+            Rejected
+          </button>
+          <p class="!bg-white text-sm">
+            Transform complex data into compelling visualizations. Required
+            skills: D3.js, React, and strong analytical thinking.
+          </p>
+          <div class="flex gap-2 my-5 !bg-white">
+            <button
+              onclick="updateJobStatus('job3', 'interview')"
+              class="btn btn-outline btn-success rounded-md !bg-white"
+            >
+              Interview
+            </button>
+            <button
+              onclick="updateJobStatus('job3', 'rejected')"
+              class="btn btn-outline btn-error rounded-md !bg-white"
+            >
+              Rejected
+            </button>
+          </div>
+        </div>
+        <div id="job4" class="!bg-white p-4 rounded-lg shadow-sm mb-4">
+          <div class="flex !bg-white justify-between">
+            <h1 class="!bg-white my-1">
+              <span class="font-bold !bg-white">CloudFirst Inc</span>
+              <br /><span class="!bg-white text-gray-500 text-sm"
+                >Backend Developer</span
+              >
+            </h1>
+            <button
+              id="remove"
+              class="btn w-10 h-10 flex items-center justify-center rounded-full !bg-white border border-gray-200 text-gray-400"
+            >
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+          <p class="!bg-white my-4 text-gray-500 text-xs">
+            Seattle, WA • Full-time • $140,000 - $190,000
+          </p>
+          <button id="not-applied-job4" class="btn my-2">Not Applied</button>
+          <button
+            id="status-interview-job4"
+            class="btn btn-outline btn-success my-2 !bg-green-100 rounded-md hidden"
+          >
+            Interview
+          </button>
+          <button
+            id="status-rejected-job4"
+            class="btn btn-outline btn-error my-2 rounded-md !bg-red-100 hidden"
+          >
+            Rejected
+          </button>
+          <p class="!bg-white text-sm">
+            Design and maintain scalable backend systems using Python and AWS.
+            Work with modern DevOps practices and cloud infrastructure.
+          </p>
+          <div class="flex gap-2 my-5 !bg-white">
+            <button
+              onclick="updateJobStatus('job4', 'interview')"
+              class="btn btn-outline btn-success rounded-md !bg-white"
+            >
+              Interview
+            </button>
+            <button
+              onclick="updateJobStatus('job4', 'rejected')"
+              class="btn btn-outline btn-error rounded-md !bg-white"
+            >
+              Rejected
+            </button>
+          </div>
+        </div>
+        <div id="job5" class="!bg-white p-4 rounded-lg shadow-sm mb-4">
+          <div class="flex !bg-white justify-between">
+            <h1 class="!bg-white my-1">
+              <span class="font-bold !bg-white">Innovation Labs</span>
+              <br /><span class="!bg-white text-gray-500 text-sm"
+                >UI/UX Engineer</span
+              >
+            </h1>
+            <button
+              id="remove"
+              class="btn w-10 h-10 flex items-center justify-center rounded-full !bg-white border border-gray-200 text-gray-400"
+            >
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+          <p class="!bg-white my-4 text-gray-500 text-xs">
+            Austin, TX • Full-time • $110,000 - $150,000
+          </p>
+          <button id="not-applied-job5" class="btn my-2">Not Applied</button>
+          <button
+            id="status-interview-job5"
+            class="btn btn-outline btn-success my-2 !bg-green-100 rounded-md hidden"
+          >
+            Interview
+          </button>
+          <button
+            id="status-rejected-job5"
+            class="btn btn-outline btn-error my-2 rounded-md !bg-red-100 hidden"
+          >
+            Rejected
+          </button>
+          <p class="!bg-white text-sm">
+            Create beautiful and functional user interfaces for our suite of
+            products. Strong design skills and frontend development expertise
+            required.
+          </p>
+          <div class="flex gap-2 my-5 !bg-white">
+            <button
+              onclick="updateJobStatus('job5', 'interview')"
+              class="btn btn-outline btn-success rounded-md !bg-white"
+            >
+              Interview
+            </button>
+            <button
+              onclick="updateJobStatus('job5', 'rejected')"
+              class="btn btn-outline btn-error rounded-md !bg-white"
+            >
+              Rejected
+            </button>
+          </div>
+        </div>
+        <div id="job6" class="!bg-white p-4 rounded-lg shadow-sm mb-4">
+          <div class="flex !bg-white justify-between">
+            <h1 class="!bg-white my-1">
+              <span class="font-bold !bg-white">MegaCorp Solutions</span>
+              <br /><span class="!bg-white text-gray-500 text-sm"
+                >JavaScript Developer</span
+              >
+            </h1>
+            <button
+              id="remove"
+              class="btn w-10 h-10 flex items-center justify-center rounded-full !bg-white border border-gray-200 text-gray-400"
+            >
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+          <p class="!bg-white my-4 text-gray-500 text-xs">
+            New York, NY • Full-time • $130,000 - $170,000
+          </p>
+          <button id="not-applied-job6" class="btn my-2">Not Applied</button>
+          <button
+            id="status-interview-job6"
+            class="btn btn-outline btn-success my-2 !bg-green-100 rounded-md hidden"
+          >
+            Interview
+          </button>
+          <button
+            id="status-rejected-job6"
+            class="btn btn-outline btn-error my-2 rounded-md !bg-red-100 hidden"
+          >
+            Rejected
+          </button>
+          <p class="!bg-white text-sm">
+            Build enterprise applications with JavaScript and modern frameworks.
+            We offer competitive compensation, health insurance, and
+            professional development opportunities.
+          </p>
+          <div class="flex gap-2 my-5 !bg-white">
+            <button
+              onclick="updateJobStatus('job6', 'interview')"
+              class="btn btn-outline btn-success rounded-md !bg-white"
+            >
+              Interview
+            </button>
+            <button
+              onclick="updateJobStatus('job6', 'rejected')"
+              class="btn btn-outline btn-error rounded-md !bg-white"
+            >
+              Rejected
+            </button>
+          </div>
+        </div>
+        <div id="job7" class="!bg-white p-4 rounded-lg shadow-sm mb-4">
+          <div class="flex !bg-white justify-between">
+            <h1 class="!bg-white my-1">
+              <span class="font-bold !bg-white">StartupXYZ</span>
+              <br /><span class="!bg-white text-gray-500 text-sm"
+                >Full Stack Engineer</span
+              >
+            </h1>
+            <button
+              id="remove"
+              class="btn w-10 h-10 flex items-center justify-center rounded-full !bg-white border border-gray-200 text-gray-400"
+            >
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+          <p class="!bg-white my-4 text-gray-500 text-xs">
+            Remote • Full-time • $120,000 - $160,000
+          </p>
+          <button id="not-applied-job7" class="btn my-2">Not Applied</button>
+          <button
+            id="status-interview-job7"
+            class="btn btn-outline btn-success my-2 !bg-green-100 rounded-md hidden"
+          >
+            Interview
+          </button>
+          <button
+            id="status-rejected-job7"
+            class="btn btn-outline btn-error my-2 rounded-md !bg-red-100 hidden"
+          >
+            Rejected
+          </button>
+          <p class="!bg-white text-sm">
+            Join our fast-growing startup and work on our core platform.
+            Experience with Node.js and React required. Great benefits and
+            equity package included.
+          </p>
+          <div class="flex gap-2 my-5 !bg-white">
+            <button
+              onclick="updateJobStatus('job7', 'interview')"
+              class="btn btn-outline btn-success rounded-md !bg-white"
+            >
+              Interview
+            </button>
+            <button
+              onclick="updateJobStatus('job7', 'rejected')"
+              class="btn btn-outline btn-error rounded-md !bg-white"
+            >
+              Rejected
+            </button>
+          </div>
+        </div>
+        <div id="job8" class="!bg-white p-4 rounded-lg shadow-sm mb-4">
+          <div class="flex !bg-white justify-between">
+            <h1 class="!bg-white my-1">
+              <span class="font-bold !bg-white">TechCorp Industries</span>
+              <br /><span class="!bg-white text-gray-500 text-sm"
+                >Senior Frontend Developer</span
+              >
+            </h1>
+            <button
+              id="remove"
+              class="btn w-10 h-10 flex items-center justify-center rounded-full !bg-white border border-gray-200 text-gray-400"
+            >
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+          <p class="!bg-white my-4 text-gray-500 text-xs">
+            San Francisco, CA • Full-time • $130,000 - $175,000
+          </p>
+          <button id="not-applied-job8" class="btn my-2">Not Applied</button>
+          <button
+            id="status-interview-job8"
+            class="btn btn-outline btn-success my-2 !bg-green-100 rounded-md hidden"
+          >
+            Interview
+          </button>
+          <button
+            id="status-rejected-job8"
+            class="btn btn-outline btn-error my-2 rounded-md !bg-red-100 hidden"
+          >
+            Rejected
+          </button>
+          <p class="!bg-white text-sm">
+            We are looking for an experienced Frontend Developer to build
+            scalable web applications using React and TypeScript. You will work
+            with a talented team on cutting-edge projects.
+          </p>
+          <div class="flex gap-2 my-5 !bg-white">
+            <button
+              onclick="updateJobStatus('job8', 'interview')"
+              class="btn btn-outline btn-success rounded-md !bg-white"
+            >
+              Interview
+            </button>
+            <button
+              onclick="updateJobStatus('job8', 'rejected')"
+              class="btn btn-outline btn-error rounded-md !bg-white"
+            >
+              Rejected
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
   </body>
 </html>
