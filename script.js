@@ -23,7 +23,6 @@ removeButtons.forEach((btn) => {
         rejectedCount = Math.max(0, rejectedCount - 1);
         rejectedCountElement.innerText = rejectedCount;
       }
-      // ------------------------------------------------------------------
 
       // remove the card
       jobCard.remove();
