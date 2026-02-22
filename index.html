@@ -34,21 +34,23 @@
       }
     </style>
   </head>
-  <body class="max-w-[1110px] mx-auto">
+  <body class="max-w-[1110px] mx-auto px-4 sm:px-6">
     <header>
       <section class="pb-12">
         <h1 class="text-left pt-14 pb-5 font-bold text-2xl">
           Job Application Tracker
         </h1>
-        <div class="flex gap-4">
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div
-            class="box-1 shadow-sm rounded-md w-[360px] h-[97px] p-4 !bg-white font-medium text-sm"
+            class="box-1 shadow-sm rounded-md w-full h-[97px] p-4 !bg-white font-medium text-sm"
           >
             Total <br />
             <span id="total" class="font-bold text-xl !bg-white">8</span>
           </div>
+
           <div
-            class="box-2 shadow-sm rounded-md w-[360px] h-[97px] p-4 !bg-white font-medium text-sm"
+            class="box-2 shadow-sm rounded-md w-full h-[97px] p-4 !bg-white font-medium text-sm"
           >
             Interview <br />
             <span
@@ -57,8 +59,9 @@
               >0</span
             >
           </div>
+
           <div
-            class="box-3 shadow-sm rounded-md w-[360px] h-[97px] p-4 !bg-white font-medium text-sm"
+            class="box-3 shadow-sm rounded-md w-full h-[97px] p-4 !bg-white font-medium text-sm"
           >
             Rejected <br />
             <span id="rejected" class="font-bold text-xl text-red-600 !bg-white"
@@ -68,16 +71,18 @@
         </div>
       </section>
     </header>
+
     <hr class="border-gray-300" />
 
     <main>
-      <section class="flex justify-between py-7">
+      <section class="flex justify-between items-center py-7">
         <div class="font-bold">Available Jobs</div>
         <div class="font-medium text-sm text-gray-500">
           <span id="remove">8</span> jobs
         </div>
       </section>
-      <section class="flex gap-2 mb-4">
+
+      <section class="flex flex-wrap gap-2 mb-4">
         <button class="filter-btn btn active px-8" data-filter="all">
           All
         </button>
